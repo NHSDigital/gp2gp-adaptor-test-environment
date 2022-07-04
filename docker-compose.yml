@@ -211,6 +211,23 @@ services:
       - -global-response-templating
       - -no-request-journal
 
+  mock-mhs-adaptor:
+    networks:
+      - nia-common
+    build:
+      context: ./
+      dockerfile: docker/mock-mhs-adaptor/Dockerfile
+    ports:
+      - "8084:8084"
+    environment:
+      - MOCK_MHS_SERVER_PORT=8084
+      - MOCK_MHS_LOGGING_LEVEL
+      - MHS_MOCK_REQUEST_JOURNAL_ENABLED
+      - GP2GP_MHS_INBOUND_QUEUE=inbound
+      - GP2GP_AMQP_BROKERS=amqp://activemq:5672
+      - GP2GP_AMQP_USERNAME
+      - GP2GP_AMQP_PASSWORD
+      - GP2GP_AMQP_MAX_REDELIVERIES
 
   # Network
 
