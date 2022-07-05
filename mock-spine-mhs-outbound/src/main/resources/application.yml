@@ -5,7 +5,7 @@ server:
     key-store: classpath:keystore.jks
     key-store-password: 123456
     key-alias: localhost
-    key-password: 12345
+    key-password: 123456
     enabled: true
 
   http:
