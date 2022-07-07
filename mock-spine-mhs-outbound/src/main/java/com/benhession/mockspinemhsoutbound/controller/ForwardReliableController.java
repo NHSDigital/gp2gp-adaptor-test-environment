@@ -1,17 +1,19 @@
 package com.benhession.mockspinemhsoutbound.controller;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.MimeType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,22 +32,18 @@ public class ForwardReliableController {
         return ResponseEntity.ok("Hello World");
     }
 
-    @PostMapping
-    public HttpStatus mockSpineEndpoint(MultipartHttpServletRequest request) throws ServletException, IOException {
+    @PostMapping(consumes = MediaType.MULTIPART_RELATED_VALUE)
+    public HttpStatus mockSpineEndpoint(@RequestBody String body, @RequestHeader Map<String, String> headers) {
 
         lastMessage = OutboundMessage.builder()
-            .headers(request.getRequestHeaders().toString())
-            .body(request.getParts().toString())
+            .headers(headers)
+            .body(body)
             .build();
+
+        System.out.println(lastMessage);
 
         return HttpStatus.ACCEPTED;
     }
-
-    @PostMapping(path = "/file")
-    public void fileUpload(@RequestBody MultipartFile file) {
-        System.out.println(file.getSize());
-    }
-
 
     @GetMapping("/last-message")
     public ResponseEntity<OutboundMessage> fetchLastMessage() {

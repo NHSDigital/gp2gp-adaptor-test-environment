@@ -1,5 +1,7 @@
 package com.benhession.mockspinemhsoutbound.model;
 
+import java.util.Map;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
@@ -8,7 +10,7 @@ import lombok.NonNull;
 @Builder
 public class OutboundMessage {
     @NonNull
-    private String headers;
+    private Map<String, String> headers;
     @NonNull
     private String body;
 }

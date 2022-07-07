@@ -14,3 +14,10 @@ server:
   logging:
     level:
       com.benhession.mockspinemhsoutbound: INFO
+
+spring:
+  servlet:
+    multipart:
+      enabled: false
+
+
