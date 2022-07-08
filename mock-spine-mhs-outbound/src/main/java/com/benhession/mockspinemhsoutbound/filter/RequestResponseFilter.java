@@ -1,4 +1,4 @@
-package com.benhession.mockspinemhsoutbound.Filter;
+package com.benhession.mockspinemhsoutbound.filter;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -24,7 +24,6 @@ public class RequestResponseFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        System.out.println("Filter called");
 
         MutableHttpServletRequest mutableRequest = new MutableHttpServletRequest(request);
 

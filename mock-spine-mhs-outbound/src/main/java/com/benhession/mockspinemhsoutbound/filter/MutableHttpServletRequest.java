@@ -1,4 +1,4 @@
-package com.benhession.mockspinemhsoutbound.Filter;
+package com.benhession.mockspinemhsoutbound.filter;
 
 import java.util.Collections;
 import java.util.Enumeration;
