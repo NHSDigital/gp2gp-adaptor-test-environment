@@ -10,3 +10,7 @@ server:
 
   http:
     port: 8085
+
+  logging:
+    level:
+      com.benhession.mockspinemhsoutbound: INFO
