@@ -101,35 +101,6 @@ services:
     ports:
       - "6379:6379"
 
-#  inbound-lb:
-#    image: dockercloud/haproxy
-#    networks:
-#      - nia-common
-#    links:
-#      - inbound
-#    ports:
-#      - "443:443"
-#      - "8079:80"
-#    volumes:
-#      - /var/run/docker.sock:/var/run/docker.sock
-#    environment:
-#      - MODE=tcp
-#      - TIMEOUT=connect 0, client 0, server 0
-
-#  outbound-lb:
-#    image: dockercloud/haproxy
-#    networks:
-#      - nia-common
-#    links:
-#      - outbound
-#    ports:
-#      - "80:80"
-#    volumes:
-#      - /var/run/docker.sock:/var/run/docker.sock
-#    environment:
-#      - TIMEOUT=connect 0, client 0, server 0
-
-
   # GP2GP Adaptor specific
 
   gp2gp:
