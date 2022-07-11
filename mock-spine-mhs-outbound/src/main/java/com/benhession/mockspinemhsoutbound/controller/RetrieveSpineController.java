@@ -1,5 +1,6 @@
 package com.benhession.mockspinemhsoutbound.controller;
 
+import com.benhession.mockspinemhsoutbound.model.OutboundMessage;
 import com.benhession.mockspinemhsoutbound.service.SpineService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,13 @@ public class RetrieveSpineController {
     private SpineService spineService;
 
     @GetMapping
-    public ResponseEntity<Map<String, List<String>>> getRecords() {
+    public ResponseEntity<Map<String, List<OutboundMessage>>> getRecords() {
 
         return ResponseEntity.ok(spineService.getRequestJournal());
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<List<String>> getRecordById(@PathVariable String id) {
+    public ResponseEntity<List<OutboundMessage>> getRecordById(@PathVariable String id) {
 
         return ResponseEntity.ok(spineService.getRequestJournalById(id));
     }

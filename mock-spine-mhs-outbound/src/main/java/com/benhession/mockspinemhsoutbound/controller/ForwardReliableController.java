@@ -25,6 +25,7 @@ import com.benhession.mockspinemhsoutbound.model.OutboundMessage;
 import com.benhession.mockspinemhsoutbound.model.SuccessTemplateParams;
 import com.benhession.mockspinemhsoutbound.service.ContentTypeService;
 import com.benhession.mockspinemhsoutbound.service.SpineResponseService;
+import com.benhession.mockspinemhsoutbound.service.SpineService;
 
 import lombok.AllArgsConstructor;
 
@@ -35,7 +36,7 @@ public class ForwardReliableController {
 
     private SpineResponseService responseService;
     private ContentTypeService contentTypeService;
-    private static OutboundMessage lastMessage;
+    private SpineService spineService;
 
     @GetMapping
     public ResponseEntity<String> helloWorld() {
@@ -43,37 +44,36 @@ public class ForwardReliableController {
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_RELATED_VALUE)
-    public ResponseEntity<String> mockSpineEndpoint(@RequestBody String body, @RequestHeader Map<String, String> headers,
-        @RequestHeader(value = "message-id") String messageId) {
+    public ResponseEntity<String> mockSpineEndpoint(
+        @RequestBody String body,
+        @RequestHeader Map<String, String> headers,
+        @RequestHeader(value = MESSAGE_ID) String messageId,
+        @RequestHeader(value = CORRELATION_ID) String correlationId,
+        @RequestHeader(value = INTERACTION_ID) String interactionId
+    ) {
 
         Optional<String> contentTypeOptional = Optional.ofNullable(headers.get(CONTENT_TYPE));
-
         contentTypeOptional.ifPresent(contentType -> {
             if (contentTypeService.hasAlteredContentType(messageId)) {
                 headers.put(CONTENT_TYPE, MHS_OUTBOUND_CONTENT_TYPE);
             }
         });
 
-        lastMessage = OutboundMessage.builder()
+        OutboundMessage message = OutboundMessage.builder()
             .headers(headers)
             .body(body)
             .build();
 
+        spineService.postJournalEntry(correlationId, message);
+
         var params = SuccessTemplateParams.builder()
-            .conversationId(headers.getOrDefault(CORRELATION_ID, ""))
-            .interactionId(headers.getOrDefault(INTERACTION_ID, ""))
-            .refToMessageId(headers.getOrDefault(MESSAGE_ID, ""))
+            .conversationId(correlationId)
+            .interactionId(interactionId)
+            .refToMessageId(messageId)
             .messageId(UUID.randomUUID().toString())
             .timestamp(LocalDateTime.now().toString())
             .build();
 
         return ResponseEntity.accepted().body(responseService.fillSuccessTemplate(params));
-    }
-
-    @GetMapping("/last-message")
-    public ResponseEntity<OutboundMessage> fetchLastMessage() {
-        Optional<OutboundMessage> messageOptional = Optional.ofNullable(lastMessage);
-
-        return messageOptional.map(ResponseEntity::ok).orElse(ResponseEntity.noContent().build());
     }
 }
