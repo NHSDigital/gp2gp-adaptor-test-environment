@@ -22,10 +22,6 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-lombok {
-    config['lombok.log.fieldName'] = 'LOGGER'
-}
-
 tasks.named('test') {
     useJUnitPlatform()
 }
