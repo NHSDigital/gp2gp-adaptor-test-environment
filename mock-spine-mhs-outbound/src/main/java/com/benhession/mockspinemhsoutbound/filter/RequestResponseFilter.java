@@ -1,5 +1,10 @@
 package com.benhession.mockspinemhsoutbound.filter;
 
+import static com.benhession.mockspinemhsoutbound.model.Headers.CONTENT_TYPE;
+import static com.benhession.mockspinemhsoutbound.model.Headers.MESSAGE_ID;
+import static com.benhession.mockspinemhsoutbound.service.ContentTypeService.AMENDED_CONTENT_TYPE;
+import static com.benhession.mockspinemhsoutbound.service.ContentTypeService.MHS_OUTBOUND_CONTENT_TYPE;
+
 import java.io.IOException;
 import java.util.Optional;
 
@@ -8,35 +13,39 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.benhession.mockspinemhsoutbound.service.ContentTypeService;
+
+import lombok.AllArgsConstructor;
+
 @Component
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class RequestResponseFilter extends OncePerRequestFilter {
 
-    private static final String CONTENT_TYPE_HEADER = "content-type";
-    private static final String MHS_OUTBOUND_CONTENT_TYPE = "multipart/related; boundary=\"--=_MIME-Boundary\"; type=text/xml; start=ebXMLHeader@spine.nhs.uk";
-    private static final String AMENDED_CONTENT_TYPE = "multipart/related; boundary=\"--=_MIME-Boundary\"; type=\"text/xml\"; " +
-        "start=\"ebXMLHeader@spine.nhs.uk\"";
+    private ContentTypeService contentTypeService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         MutableHttpServletRequest mutableRequest = new MutableHttpServletRequest(request);
 
-        Optional<String> contentTypeOptional = Optional.ofNullable(mutableRequest.getContentType());
-
-        Optional<String> headerOptional = Optional.ofNullable(mutableRequest.getHeader(CONTENT_TYPE_HEADER));
-
+        Optional<String> headerOptional = Optional.ofNullable(mutableRequest.getHeader(CONTENT_TYPE));
         headerOptional.ifPresent(header -> {
             if (header.equals(MHS_OUTBOUND_CONTENT_TYPE)) {
-                mutableRequest.putHeader(CONTENT_TYPE_HEADER, AMENDED_CONTENT_TYPE);
+                mutableRequest.putHeader(CONTENT_TYPE, AMENDED_CONTENT_TYPE);
+
+                Optional<String> messageIdOptional = Optional.ofNullable(mutableRequest.getHeader(MESSAGE_ID));
+                messageIdOptional.ifPresent(messageId -> contentTypeService.markAsAlteredContentType(messageId));
             }
         });
 
+        Optional<String> contentTypeOptional = Optional.ofNullable(mutableRequest.getContentType());
         contentTypeOptional.ifPresent(contentType -> {
             if (contentType.equals(MHS_OUTBOUND_CONTENT_TYPE)) {
                 mutableRequest.setContentType(AMENDED_CONTENT_TYPE);

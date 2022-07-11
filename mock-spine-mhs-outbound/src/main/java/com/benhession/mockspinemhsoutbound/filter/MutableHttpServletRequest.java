@@ -14,7 +14,7 @@ public class MutableHttpServletRequest extends HttpServletRequestWrapper {
     private final Map<String, String> customHeaders;
     private String customContentType;
 
-    public MutableHttpServletRequest(HttpServletRequest request){
+    public MutableHttpServletRequest(HttpServletRequest request) {
         super(request);
         this.customHeaders = new HashMap<>();
     }
@@ -22,7 +22,7 @@ public class MutableHttpServletRequest extends HttpServletRequestWrapper {
     @Override
     public String getContentType() {
 
-        if(customContentType != null) {
+        if (customContentType != null) {
             return customContentType;
         }
 
@@ -33,7 +33,7 @@ public class MutableHttpServletRequest extends HttpServletRequestWrapper {
         customContentType = contentType;
     }
 
-    public void putHeader(String name, String value){
+    public void putHeader(String name, String value) {
         this.customHeaders.put(name, value);
     }
 
@@ -41,7 +41,7 @@ public class MutableHttpServletRequest extends HttpServletRequestWrapper {
 
         String headerValue = customHeaders.get(name);
 
-        if (headerValue != null){
+        if (headerValue != null) {
             return headerValue;
         }
 
@@ -66,16 +66,15 @@ public class MutableHttpServletRequest extends HttpServletRequestWrapper {
         Set<String> headers = new HashSet<>();
         Enumeration<String> e = super.getHeaders(name);
 
-        while(e.hasMoreElements()) {
+        while (e.hasMoreElements()) {
             headers.add(e.nextElement());
         }
 
-        if(customContentType != null && name.equals("content-type")) {
+        if (customContentType != null && name.equals("content-type")) {
             headers.clear();
             headers.add(getContentType());
         }
 
         return Collections.enumeration(headers);
     }
-
 }

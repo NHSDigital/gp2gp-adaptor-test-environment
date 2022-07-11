@@ -35,6 +35,5 @@ public class ReliabilityController {
             .ok()
             .headers(headers)
             .body(response);
-
     }
 }
