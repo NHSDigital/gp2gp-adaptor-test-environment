@@ -5,8 +5,6 @@ plugins {
     id "io.freefair.lombok" version "5.3.0"
 }
 
-sourceCompatibility = '17'
-
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -19,7 +17,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.apache.commons:commons-lang3:3.11'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

@@ -1,11 +1,12 @@
 package com.benhession.mockspinemhsoutbound.service;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.HttpHeaders;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +17,9 @@ import java.util.stream.Stream;
 import static org.springframework.http.HttpStatus.ACCEPTED;
 
 @Slf4j
-public class RetrieveSpineService {
+@Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
+public class SpineService {
 
     private static final Map<String, List<String>> REQUEST_JOURNALS_MAP = new HashMap<>();
 
@@ -30,9 +33,12 @@ public class RetrieveSpineService {
         return REQUEST_JOURNALS_MAP.get(correlationId);
     }
 
-    public ResponseEntity<String> postJournalEntry(String message) {
+    public ResponseEntity<String> postJournalEntry(String correlationId, String message) {
 
         headers.setContentType(MediaType.TEXT_HTML);
+
+        addToRequestJournal(correlationId, message);
+
         return new ResponseEntity<>(message, headers, ACCEPTED);
     }
 
@@ -43,11 +49,11 @@ public class RetrieveSpineService {
                     Stream.of(message)
             ).collect(Collectors.toList()));
 
-            log.info("Updated Journal entry id: {}" + correlationId);
+            LOGGER.info("Updated Journal entry id: {}" + correlationId);
         } else {
             REQUEST_JOURNALS_MAP.put(correlationId, List.of(message));
 
-            log.info("Added new Journal entry with id: {}" + correlationId);
+            LOGGER.info("Added new Journal entry with id: {}" + correlationId);
         }
     }
 
