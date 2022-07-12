@@ -2,9 +2,9 @@
 
 set -x -e
 
-docker-compose down
+source ./vars.sh
 
-source vars.sh
+docker-compose down
 
 cd mock-spine-mhs-outbound
 
