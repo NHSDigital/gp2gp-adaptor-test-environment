@@ -12,6 +12,9 @@ cd mock-spine-mhs-outbound
 
 cd ..
 
+docker network inspect nia-common >/dev/null 2>&1 || \
+    docker network create nia-common
+
 docker-compose build
 
 docker-compose up
