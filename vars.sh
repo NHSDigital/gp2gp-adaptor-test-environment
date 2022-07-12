@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
+####################################
 # MHS VARS
 
 #SECRET KEY VARS
-#User-specific env variables
+#Certificates provided for localhost
 export MHS_SECRET_PARTY_KEY="Y90664-9198273"
 export MHS_SECRET_CLIENT_CERT="-----BEGIN CERTIFICATE-----
 MIIFPTCCAyUCFAKYCULeFVcQCwXCGCiCFVu09NmzMA0GCSqGSIb3DQEBCwUAMF0x
@@ -131,9 +132,8 @@ export MONGODB_PORT="27017"
 export REDIS_PORT="6379"
 
 #GLOBAL VARS
-export BUILD_TAG="latest" #need to change back to "latest"
+export BUILD_TAG="latest"
 export BASE_IMAGE_TAG="latest"
-export MHS_LOG_LEVEL="DEBUG"
 export AWS_ACCESS_KEY_ID="FILL IN"
 export AWS_SECRET_ACCESS_KEY="FILL IN"
 export MHS_STATE_TABLE_NAME="mhs_state"
@@ -168,20 +168,10 @@ export MHS_INBOUND_QUEUE_RETRY_DELAY="500"
 export MHS_INBOUND_HEALTHCHECK_SERVER_PORT="8083"
 
 #MHS ROUTE VARS
-export MHS_ROUTE_PORT="8082"
-export MHS_SDS_URL="ldap://192.168.128.11"
-export MHS_SDS_SEARCH_BASE="ou=services,o=nhs"
-export MHS_DISABLE_SDS_TLS="True"
-export MHS_SDS_REDIS_CACHE_HOST="redis"
-export MHS_SDS_REDIS_DISABLE_TLS="True"
-
-export MHS_STATE_TABLE_NAME="mhs_state"
-export MHS_SYNC_ASYNC_STATE_TABLE_NAME="sync_async_state"
-
+# Route responses are mocked by mock-spine-mhs
 
 ####################################
-
-# GP2GP Vars
+# GP2GP VARS
 
 export GP2GP_SERVER_PORT="8183"
 export GP2GP_AMQP_BROKERS="amqp://activemq:5672"
@@ -192,12 +182,23 @@ export GP2GP_GPC_GET_URL="http://gpcc:8090/@ODS_CODE@/STU3/1/gpconnect"
 export GP2GP_LARGE_ATTACHMENT_THRESHOLD="31216"
 export GP2GP_LARGE_EHR_EXTRACT_THRESHOLD="31216"
 
+
+# GP CONNECT CONSUMER ADAPTOR VARS (alter to connect the GP2GP Adaptor to a GP Connect Producer)
+# connected to a mock producer by default
+
 export GPC_CONSUMER_SERVER_PORT="8090"
 export GPC_CONSUMER_SDS_URL="http://wiremock:8080/spine-directory/"
 export GPC_CONSUMER_SDS_APIKEY="anykey"
-export GPC_CONSUMER_LOGGING_LEVEL="DEBUG"
 
+#export GPC_CONSUMER_SSP_URL=
+#export GPC_CONSUMER_SPINE_CLIENT_CERT=
+#export GPC_CONSUMER_SPINE_CLIENT_KEY=
+#export GPC_CONSUMER_SPINE_ROOT_CA_CERT=
+#export GPC_CONSUMER_SPINE_SUB_CA_CERT=
+
+####################################
+# LOGGING
+
+export MHS_LOG_LEVEL="DEBUG"
 export GP2GP_LOGGING_LEVEL="DEBUG"
 export GPC_CONSUMER_LOGGING_LEVEL="DEBUG"
-
-export MHS_MOCK_REQUEST_JOURNAL_ENABLED="true"

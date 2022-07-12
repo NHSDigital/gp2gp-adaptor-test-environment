@@ -13,6 +13,8 @@ services:
       - "8161:8161"
       - "5672:5672"
 
+################################
+
   # MHS specific
 
   inbound:
@@ -73,19 +75,19 @@ services:
       - MHS_SDS_API_URL
       - MHS_SDS_API_KEY
 
-  route:
-    image: nhsdev/nia-mhs-route:1.2.2
-    networks:
-      - nia-common
-    ports:
-        - "${MHS_ROUTE_PORT}:80"
-    environment:
-      - MHS_LOG_LEVEL
-      - MHS_SDS_URL
-      - MHS_SDS_SEARCH_BASE
-      - MHS_DISABLE_SDS_TLS
-      - MHS_SDS_REDIS_CACHE_HOST
-      - MHS_SDS_REDIS_DISABLE_TLS
+#  route:
+#    image: nhsdev/nia-mhs-route:1.2.2
+#    networks:
+#      - nia-common
+#    ports:
+#        - "${MHS_ROUTE_PORT}:80"
+#    environment:
+#      - MHS_LOG_LEVEL
+#      - MHS_SDS_URL
+#      - MHS_SDS_SEARCH_BASE
+#      - MHS_DISABLE_SDS_TLS
+#      - MHS_SDS_REDIS_CACHE_HOST
+#      - MHS_SDS_REDIS_DISABLE_TLS
 
   dynamodb:
     image: nhsdev/nia-dynamodb-local:1.0.3
@@ -101,15 +103,14 @@ services:
     ports:
       - "6379:6379"
 
+################################
+
   # GP2GP Adaptor specific
 
   gp2gp:
     image: nhsdev/nia-gp2gp-adaptor:1.5.0
     networks:
       - nia-common
-    # build:
-    #   context: ./
-    #   dockerfile: docker/gp2gp/Dockerfile
     depends_on:
       - mongodb
       - activemq
@@ -184,6 +185,8 @@ services:
 
 ################################
 
+# Mock spine and route service for MHS Adaptor
+
   mock-spine-mhs:
     networks:
       - nia-common
@@ -193,6 +196,8 @@ services:
     ports:
       - "8085:8085"
       - "8443:8443"
+
+################################
 
   # Network
 
