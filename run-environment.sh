@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -x -e
+
+docker-compose down
+
+source vars.sh
+
+cd mock-spine-mhs-outbound
+
+./gradlew bootJar
+
+cd ..
+
+docker network inspect nia-common >/dev/null 2>&1 || \
+    docker network create nia-common
+
+docker-compose build
+
+docker-compose up
