@@ -3,9 +3,6 @@ package com.benhession.mockspinemhsoutbound.service;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -14,14 +11,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.springframework.http.HttpStatus.ACCEPTED;
-
 import com.benhession.mockspinemhsoutbound.model.OutboundMessage;
 
 @Slf4j
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class SpineService {
+public class JournalService {
 
     private static final Map<String, List<OutboundMessage>> REQUEST_JOURNALS_MAP = new HashMap<>();
 

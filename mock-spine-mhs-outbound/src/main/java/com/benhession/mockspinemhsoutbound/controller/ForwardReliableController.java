@@ -25,7 +25,7 @@ import com.benhession.mockspinemhsoutbound.model.OutboundMessage;
 import com.benhession.mockspinemhsoutbound.model.SuccessTemplateParams;
 import com.benhession.mockspinemhsoutbound.service.ContentTypeService;
 import com.benhession.mockspinemhsoutbound.service.SpineResponseService;
-import com.benhession.mockspinemhsoutbound.service.SpineService;
+import com.benhession.mockspinemhsoutbound.service.JournalService;
 
 import lombok.AllArgsConstructor;
 
@@ -36,7 +36,7 @@ public class ForwardReliableController {
 
     private SpineResponseService responseService;
     private ContentTypeService contentTypeService;
-    private SpineService spineService;
+    private JournalService journalService;
 
     @GetMapping
     public ResponseEntity<String> helloWorld() {
@@ -64,7 +64,7 @@ public class ForwardReliableController {
             .body(body)
             .build();
 
-        spineService.postJournalEntry(correlationId, message);
+        journalService.postJournalEntry(correlationId, message);
 
         var params = SuccessTemplateParams.builder()
             .conversationId(correlationId)
