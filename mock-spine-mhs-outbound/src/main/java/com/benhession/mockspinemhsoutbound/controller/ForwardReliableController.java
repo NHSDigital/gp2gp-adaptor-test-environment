@@ -1,9 +1,9 @@
 package com.benhession.mockspinemhsoutbound.controller;
 
-import static com.benhession.mockspinemhsoutbound.model.Headers.CONTENT_TYPE;
-import static com.benhession.mockspinemhsoutbound.model.Headers.CORRELATION_ID;
-import static com.benhession.mockspinemhsoutbound.model.Headers.INTERACTION_ID;
-import static com.benhession.mockspinemhsoutbound.model.Headers.MESSAGE_ID;
+import static com.benhession.mockspinemhsoutbound.model.MessageHeaders.CONTENT_TYPE;
+import static com.benhession.mockspinemhsoutbound.model.MessageHeaders.CORRELATION_ID;
+import static com.benhession.mockspinemhsoutbound.model.MessageHeaders.INTERACTION_ID;
+import static com.benhession.mockspinemhsoutbound.model.MessageHeaders.MESSAGE_ID;
 import static com.benhession.mockspinemhsoutbound.service.ContentTypeService.MHS_OUTBOUND_CONTENT_TYPE;
 
 import java.time.LocalDateTime;

@@ -1,7 +1,7 @@
 package com.benhession.mockspinemhsoutbound.filter;
 
-import static com.benhession.mockspinemhsoutbound.model.Headers.CONTENT_TYPE;
-import static com.benhession.mockspinemhsoutbound.model.Headers.MESSAGE_ID;
+import static com.benhession.mockspinemhsoutbound.model.MessageHeaders.CONTENT_TYPE;
+import static com.benhession.mockspinemhsoutbound.model.MessageHeaders.MESSAGE_ID;
 import static com.benhession.mockspinemhsoutbound.service.ContentTypeService.AMENDED_CONTENT_TYPE;
 import static com.benhession.mockspinemhsoutbound.service.ContentTypeService.MHS_OUTBOUND_CONTENT_TYPE;
 

@@ -1,6 +1,6 @@
 package com.benhession.mockspinemhsoutbound.model;
 
-public class Headers {
+public class MessageHeaders {
     public static final String CONTENT_TYPE = "content-type";
     public static final String MESSAGE_ID = "message-id";
     public static final String CORRELATION_ID = "correlation-id";
