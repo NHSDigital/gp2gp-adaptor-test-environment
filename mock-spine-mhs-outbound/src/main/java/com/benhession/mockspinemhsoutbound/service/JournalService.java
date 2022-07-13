@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -24,8 +25,8 @@ public class JournalService {
         return REQUEST_JOURNALS_MAP;
     }
 
-    public List<OutboundMessage> getRequestJournalById(String correlationId) {
-        return REQUEST_JOURNALS_MAP.get(correlationId);
+    public Optional<List<OutboundMessage>> getRequestJournalById(String correlationId) {
+         return Optional.ofNullable(REQUEST_JOURNALS_MAP.get(correlationId));
     }
 
     public void postJournalEntry(String correlationId, OutboundMessage message) {

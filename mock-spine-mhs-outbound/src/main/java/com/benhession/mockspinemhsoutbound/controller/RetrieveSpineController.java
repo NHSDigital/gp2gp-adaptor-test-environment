@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/retrieve")
@@ -26,7 +27,9 @@ public class RetrieveSpineController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<List<OutboundMessage>> getRecordById(@PathVariable String id) {
 
-        return ResponseEntity.ok(journalService.getRequestJournalById(id));
+        Optional<List<OutboundMessage>> messagesOptional = journalService.getRequestJournalById(id);
+
+        return messagesOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.noContent().build());
     }
 
 
