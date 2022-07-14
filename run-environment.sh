@@ -18,3 +18,5 @@ docker network inspect nia-common >/dev/null 2>&1 || \
 docker-compose build
 
 docker-compose up
+
+docker-compose down
