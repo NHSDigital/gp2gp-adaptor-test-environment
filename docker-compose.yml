@@ -190,12 +190,17 @@ services:
   mock-spine-mhs:
     networks:
       - nia-common
+    depends_on:
+      - mongodb
     build:
       context: ./
       dockerfile: docker/mock-spine-mhs-outbound/DockerFile
     ports:
       - "8085:8085"
       - "8443:8443"
+    environment:
+      - GP2GP_MONGO_URI
+      - GP2GP_MONGO_DATABASE_NAME
 
 ################################
 

@@ -20,4 +20,9 @@ spring:
     multipart:
       enabled: false
 
+  data:
+    mongodb:
+      uri: ${GP2GP_MONGO_URI}
+      database: ${GP2GP_MONGO_DATABASE_NAME}
+
 
