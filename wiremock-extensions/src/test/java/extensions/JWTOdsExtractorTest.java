@@ -1,0 +1,24 @@
+package extensions;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
+
+public class JWTOdsExtractorTest {
+
+    private static final String EXAMPLE_AUTH_HEADER = "Bearer ewogICAgImFsZyI6ICJub25lIiwKICAgICJ0eXAiOiAiSldUIgp9.ewogICAgImlzcyI6ICJodHRwOi8vZ3Bjb25uZWN0LXBvc3RtYW4tdXJsIiwKICAgICJzdWIiOiAiMSIsCiAgICAiYXVkIjogImh0dHA6Ly9ncGNjOjgwOTAvQE9EU19DT0RFQC9TVFUzLzEvZ3Bjb25uZWN0IiwKICAgICJleHAiOiAxNjU4MjM5NTAyLAogICAgImlhdCI6IDE2NTgyMzkyMDIsCiAgICAicmVhc29uX2Zvcl9yZXF1ZXN0IjogIm1pZ3JhdGlvbiIsCiAgICAicmVxdWVzdGVkX3Njb3BlIjogInBhdGllbnQvKi5yZWFkIGNvbmYvUiIsCiAgICAicmVxdWVzdGluZ19kZXZpY2UiOiB7CiAgICAgICAgInJlc291cmNlVHlwZSI6ICJEZXZpY2UiLAogICAgICAgICJpZCI6ICIxIiwKICAgICAgICAiaWRlbnRpZmllciI6IFsKICAgICAgICAgICAgewogICAgICAgICAgICAgICAgInN5c3RlbSI6ICJXZWIgSW50ZXJmYWNlIiwKICAgICAgICAgICAgICAgICJ2YWx1ZSI6ICJQb3N0bWFuIGV4YW1wbGUgY29uc3VtZXIiCiAgICAgICAgICAgIH0KICAgICAgICBdLAogICAgICAgICJtb2RlbCI6ICJQb3N0bWFuIiwKICAgICAgICAidmVyc2lvbiI6ICIxLjAiCiAgICB9LAogICAgInJlcXVlc3Rpbmdfb3JnYW5pemF0aW9uIjogewogICAgICAgICJyZXNvdXJjZVR5cGUiOiAiT3JnYW5pemF0aW9uIiwKICAgICAgICAiaWRlbnRpZmllciI6IFsKICAgICAgICAgICAgewogICAgICAgICAgICAgICAgInN5c3RlbSI6ICJodHRwczovL2ZoaXIubmhzLnVrL0lkL29kcy1vcmdhbml6YXRpb24tY29kZSIsCiAgICAgICAgICAgICAgICAidmFsdWUiOiAiUzEyMzQiCiAgICAgICAgICAgIH0KICAgICAgICBdLAogICAgICAgICJuYW1lIjogIk4vQSIKICAgIH0KfQ.";
+    private static final String ODS_CODE = "S1234";
+
+    @Test
+    public void when_HeaderIsValid_Expect_ParseOdsSuccessful() {
+        JwtOdsExtractor jwtOdsExtractor = new JwtOdsExtractor();
+
+        Optional<String> odsOptional = jwtOdsExtractor.parseOds(EXAMPLE_AUTH_HEADER);
+
+        assertTrue(odsOptional.isPresent());
+        assertEquals(ODS_CODE, odsOptional.get());
+    }
+}
