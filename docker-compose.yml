@@ -179,9 +179,6 @@ services:
     build: ./docker/wiremock
     ports:
       - "8110:8080"
-    command:
-      - -global-response-templating
-      - -no-request-journal
 
 ################################
 
