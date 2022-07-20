@@ -41,6 +41,7 @@ public class JwtOdsExtractor extends StubRequestFilter {
     }
 
     public Optional<String> parseOds(String authHeader) {
+
         String[] chunks = authHeader.split("\\.");
 
         Base64.Decoder decoder = Base64.getDecoder();
