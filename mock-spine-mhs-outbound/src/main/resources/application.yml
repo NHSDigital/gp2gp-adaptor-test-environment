@@ -1,0 +1,28 @@
+server:
+  port: 8443
+
+  ssl:
+    key-store: classpath:keystore.jks
+    key-store-password: 123456
+    key-alias: localhost
+    key-password: 123456
+    enabled: true
+
+  http:
+    port: 8085
+
+logging:
+  level:
+    com.benhession.mockspinemhsoutbound: INFO
+
+spring:
+  servlet:
+    multipart:
+      enabled: false
+
+  data:
+    mongodb:
+      uri: ${GP2GP_MONGO_URI}
+      database: ${GP2GP_MONGO_DATABASE_NAME}
+
+

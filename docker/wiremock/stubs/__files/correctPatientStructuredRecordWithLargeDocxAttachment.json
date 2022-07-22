@@ -16206,7 +16206,7 @@
                 "content": [
                     {
                         "attachment": {
-                            "contentType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                            "contentType": "application/msword",
                             "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Binary/07a6483f-732b-461e-86b6-edb665c45511-1",
                             "size": 83196
                         }

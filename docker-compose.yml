@@ -13,6 +13,8 @@ services:
       - "8161:8161"
       - "5672:5672"
 
+################################
+
   # MHS specific
 
   inbound:
@@ -20,8 +22,8 @@ services:
     networks:
       - nia-common
     ports:
-      - "443"
-      - "80"
+      - "${MHS_INBOUND_PORT}:443"
+      - "8079:80"
       - "${MHS_INBOUND_HEALTHCHECK_SERVER_PORT}:${MHS_INBOUND_HEALTHCHECK_SERVER_PORT}"
     environment:
       - MHS_INBOUND_HEALTHCHECK_SERVER_PORT=${MHS_INBOUND_HEALTHCHECK_SERVER_PORT}
@@ -49,7 +51,7 @@ services:
     networks:
       - nia-common
     ports:
-      - "80"
+      - "${MHS_OUTBOUND_PORT}:80"
     environment:
       - MHS_LOG_LEVEL
       - MHS_SECRET_PARTY_KEY
@@ -73,19 +75,19 @@ services:
       - MHS_SDS_API_URL
       - MHS_SDS_API_KEY
 
-  route:
-    image: nhsdev/nia-mhs-route:1.2.2
-    networks:
-      - nia-common
-    ports:
-        - "${MHS_ROUTE_PORT}:80"
-    environment:
-      - MHS_LOG_LEVEL
-      - MHS_SDS_URL
-      - MHS_SDS_SEARCH_BASE
-      - MHS_DISABLE_SDS_TLS
-      - MHS_SDS_REDIS_CACHE_HOST
-      - MHS_SDS_REDIS_DISABLE_TLS
+#  route:
+#    image: nhsdev/nia-mhs-route:1.2.2
+#    networks:
+#      - nia-common
+#    ports:
+#        - "${MHS_ROUTE_PORT}:80"
+#    environment:
+#      - MHS_LOG_LEVEL
+#      - MHS_SDS_URL
+#      - MHS_SDS_SEARCH_BASE
+#      - MHS_DISABLE_SDS_TLS
+#      - MHS_SDS_REDIS_CACHE_HOST
+#      - MHS_SDS_REDIS_DISABLE_TLS
 
   dynamodb:
     image: nhsdev/nia-dynamodb-local:1.0.3
@@ -101,44 +103,14 @@ services:
     ports:
       - "6379:6379"
 
-  inbound-lb:
-    image: dockercloud/haproxy
-    networks:
-      - nia-common
-    links:
-      - inbound
-    ports:
-      - "443:443"
-      - "8079:80"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      - MODE=tcp
-      - TIMEOUT=connect 0, client 0, server 0
-
-  outbound-lb:
-    image: dockercloud/haproxy
-    networks:
-      - nia-common
-    links:
-      - outbound
-    ports:
-      - "80:80"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      - TIMEOUT=connect 0, client 0, server 0
-
+################################
 
   # GP2GP Adaptor specific
 
   gp2gp:
-    image: nhsdev/nia-gp2gp-adaptor:1.5.0
+    image: nhsdev/nia-gp2gp-adaptor:1.5.1
     networks:
       - nia-common
-    # build:
-    #   context: ./
-    #   dockerfile: docker/gp2gp/Dockerfile
     depends_on:
       - mongodb
       - activemq
@@ -207,27 +179,27 @@ services:
     build: ./docker/wiremock
     ports:
       - "8110:8080"
-    command:
-      - -global-response-templating
-      - -no-request-journal
 
-  mock-mhs-adaptor:
+################################
+
+# Mock spine and route service for MHS Adaptor
+
+  mock-spine-mhs:
     networks:
       - nia-common
+    depends_on:
+      - mongodb
     build:
       context: ./
-      dockerfile: docker/mock-mhs-adaptor/Dockerfile
+      dockerfile: docker/mock-spine-mhs-outbound/DockerFile
     ports:
-      - "8084:8084"
+      - "8085:8085"
+      - "8443:8443"
     environment:
-      - MOCK_MHS_SERVER_PORT=8084
-      - MOCK_MHS_LOGGING_LEVEL
-      - MHS_MOCK_REQUEST_JOURNAL_ENABLED
-      - GP2GP_MHS_INBOUND_QUEUE=inbound
-      - GP2GP_AMQP_BROKERS=amqp://activemq:5672
-      - GP2GP_AMQP_USERNAME
-      - GP2GP_AMQP_PASSWORD
-      - GP2GP_AMQP_MAX_REDELIVERIES
+      - GP2GP_MONGO_URI
+      - GP2GP_MONGO_DATABASE_NAME
+
+################################
 
   # Network
 
