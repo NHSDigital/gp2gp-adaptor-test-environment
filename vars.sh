@@ -168,7 +168,7 @@ export MHS_INBOUND_QUEUE_RETRY_DELAY="500"
 export MHS_INBOUND_HEALTHCHECK_SERVER_PORT="8083"
 
 #MHS ROUTE VARS
-# Route responses are mocked by mock-spine-mhs
+# Route responses are mocked by mock-spine-mhs-outbound
 
 ####################################
 # GP2GP VARS
