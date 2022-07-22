@@ -8,6 +8,8 @@ docker-compose down
 
 cd mock-spine-mhs-outbound
 
+chmod +x gradlew
+
 ./gradlew bootJar
 
 cd ..
