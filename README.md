@@ -24,15 +24,15 @@ documentation.
 ### Running tests 
 
 A collection of tests has been provided to send requests using 
-Postman and verify the responses. These can be found in `/postman`.
+Postman and verify the responses, which can be found in `/postman`.
 
-As the MHS adaptor expects requests to use HTTPS, a set of certificates for localhost has 
-been provided in `/postman/localhost-certificates`. These can be added to Postman in 
+As the MHS adaptor expects inbound requests to use HTTPS, a set of certificates for localhost has 
+been provided in `/postman/localhost-certificates`. These should be added to Postman in 
 *settings > certificates*. 
 
 #### Running tests against an alternative GPC producer
 
-The postman collection variables can be configured to work with an alternative producer 
+The Postman collection variables can be configured to work with an alternative producer 
 by changing the ASID and ODS codes to appropriate values. Please note, the `to-party-id` 
 variable is verified by the MHS Adaptor and therefore needs to match the 
 `MHS_SECRET_PARTY_KEY` environment variable defined in `vars.sh`.
