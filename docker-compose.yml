@@ -149,7 +149,7 @@ services:
   mongodb:
     networks:
       - nia-common
-    image: bitnami/mongodb
+    image: mongo
     ports:
       - "27017:27017"
 
