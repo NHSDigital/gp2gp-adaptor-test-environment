@@ -181,6 +181,13 @@ services:
     ports:
       - "8110:8080"
 
+  stub-gpc-sds:
+    networks:
+      - nia-common
+    build: ./docker/stub-gpc-sds-wiremock
+    ports:
+      - "8111:8080"
+
 ################################
 
 # Mock spine and route service for MHS Adaptor
