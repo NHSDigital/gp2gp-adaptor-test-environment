@@ -187,14 +187,25 @@ export GP2GP_LARGE_EHR_EXTRACT_THRESHOLD="31216"
 # connected to a mock producer by default
 
 export GPC_CONSUMER_SERVER_PORT="8090"
-export GPC_CONSUMER_SDS_URL="http://stub-gpc-sds:8080/spine-directory/"
+
+# Use http://stub-gpc-sds:8080/spine-directory/ to connect to a GPC Producer endpoint
+#export GPC_CONSUMER_SDS_URL="http://stub-gpc-sds:8080/spine-directory/"
+export GPC_CONSUMER_SDS_URL="http://wiremock:8080/spine-directory/"
 export GPC_CONSUMER_SDS_APIKEY="anykey"
 
+# these variables are ignored if they are not present
 #export GPC_CONSUMER_SSP_URL=
 #export GPC_CONSUMER_SPINE_CLIENT_CERT=
 #export GPC_CONSUMER_SPINE_CLIENT_KEY=
 #export GPC_CONSUMER_SPINE_ROOT_CA_CERT=
 #export GPC_CONSUMER_SPINE_SUB_CA_CERT=
+
+####################################
+# STUB SDS VARS
+
+# GPC Producer endpoints
+export STUB_GPC_SDS_STRUCTURED_URL="https://example.com/L23456/STU3/1/gpconnect/structured"
+export STUB_GPC_SDS_DOCUMENTS_URL="https://example.com/L23456/STU3/1/gpconnect/documents"
 
 ####################################
 # LOGGING

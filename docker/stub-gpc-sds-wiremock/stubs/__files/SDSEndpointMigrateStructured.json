@@ -32,7 +32,7 @@
                         ]
                     }
                 ],
-                "address": "FILL IN",
+                "address": "{{systemValue type='ENVIRONMENT' key='STUB_GPC_SDS_STRUCTURED_URL'}}",
                 "managingOrganization": {
                     "identifier": {
                         "system": "https://fhir.nhs.uk/Id/ods-organization-code",

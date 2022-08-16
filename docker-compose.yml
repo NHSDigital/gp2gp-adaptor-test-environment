@@ -187,6 +187,9 @@ services:
     build: ./docker/stub-gpc-sds-wiremock
     ports:
       - "8111:8080"
+    environment:
+      - STUB_GPC_SDS_STRUCTURED_URL
+      - STUB_GPC_SDS_DOCUMENTS_URL
 
 ################################
 
