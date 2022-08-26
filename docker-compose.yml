@@ -116,7 +116,7 @@ services:
       - mongodb
       - activemq
     ports:
-      - "8081:8080"
+      - "8081:8183"
     environment:
       - GP2GP_SERVER_PORT
       - GP2GP_LOGGING_LEVEL
