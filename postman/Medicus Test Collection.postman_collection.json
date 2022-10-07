@@ -4256,7 +4256,7 @@
 							"script": {
 								"exec": [
 									"const response = pm.response;\r",
-									"const missingDocumentIdValue = pm.collectionVariables.get(\"test-8-document-id-value\")\r",
+									"const missingDocumentIdValue = pm.collectionVariables.get(\"test-14-document-id-value\")\r",
 									"\r",
 									"pm.test(\"Response status code should be 200 OK\", () => {\r",
 									"    pm.expect(response.code).to.equal(200);\r",
