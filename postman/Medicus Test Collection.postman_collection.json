@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8d13f11f-4031-433b-83ce-260cf6375629",
+		"_postman_id": "8ca200ac-6220-4f3e-b95d-0f8ebd77dc5a",
 		"name": "Medicus Test Collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "15249429"
@@ -4249,7 +4249,7 @@
 					"response": []
 				},
 				{
-					"name": "Verify document was sent as placeholder",
+					"name": "Verify both placeholders and documents were sent",
 					"event": [
 						{
 							"listen": "test",
