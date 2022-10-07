@@ -4249,7 +4249,7 @@
 					"response": []
 				},
 				{
-					"name": "Verify document was sent as placeholder",
+					"name": "Verify both placeholders and documents were sent",
 					"event": [
 						{
 							"listen": "test",
@@ -4901,7 +4901,7 @@
 					"response": []
 				},
 				{
-					"name": "Verify document was sent as placeholder",
+					"name": "Verify document was sent",
 					"event": [
 						{
 							"listen": "test",
