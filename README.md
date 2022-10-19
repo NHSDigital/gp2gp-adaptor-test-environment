@@ -21,6 +21,13 @@ Mac
 sh run-environment.sh
 ```
 
+### docker images
+
+The current release of the GP2GP Adaptor has separate docker images optimised for ARM and x86 architecture. 
+By default, the test environment uses the ARM image. This can be changed by commenting / uncommenting *line 111* 
+and *line 112* in the [docker compose file](docker-compose.yml).
+
+
 ## Running tests 
 
 A collection of tests has been provided to send requests using 
@@ -36,7 +43,7 @@ By default, the test environment uses a mock GP Connect producer. To connect an
 alternative producer change the following variables in `vars.sh`:
 
 | KEY                         | Value                                                                                                  |
-|-----------------------------|--------------------------------------------------------------------------------------------------------|                             
+|-----------------------------|--------------------------------------------------------------------------------------------------------|
 | GPC_CONSUMER_SDS_URL        | Must equal: *http://stub-gpc-sds:8080/spine-directory/*                                                |
 | STUB_GPC_SDS_STRUCTURED_URL | URL of your structured record endpoint:  e.g. *https://example.com/L23456/STU3/1/gpconnect/structured* |
 | STUB_GPC_SDS_DOCUMENTS_URL  | URL of your documents' endpoint: e.g. *https://example.com/L23456/STU3/1/gpconnect/documents*          |
@@ -47,3 +54,5 @@ and therefore needs to match the `MHS_SECRET_PARTY_KEY` environment variable def
 Each test has a unique NHS number which can be configured by changing the current value 
 of the appropriate collection variable, i.e. 
 `test-{number}-nhs-number`.
+
+

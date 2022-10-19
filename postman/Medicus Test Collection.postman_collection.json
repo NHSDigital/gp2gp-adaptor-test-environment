@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b2d6e472-d5f8-47b9-9823-be3a68d331b2",
+		"_postman_id": "8d13f11f-4031-433b-83ce-260cf6375629",
 		"name": "Medicus Test Collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "15249429"
@@ -5953,92 +5953,7 @@
 					"response": []
 				},
 				{
-					"name": "Get first COPC message id Copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const numOfRetries = 3;\r",
-									"let count = pm.collectionVariables.get(\"ehr-retry-count\");\r",
-									"\r",
-									"function retryRequest() {\r",
-									"\r",
-									"    setTimeout(() => {}, 5000);\r",
-									"\r",
-									"    if(++count >= numOfRetries) {\r",
-									"       \r",
-									"       pm.test(\"Journal should have copc messages\", () => {\r",
-									"           pm.expect.fail(\"max number of retries reached retrieving COPC message.\");\r",
-									"       });\r",
-									"        \r",
-									"    } else {\r",
-									"        pm.collectionVariables.set(\"ehr-retry-count\", count);\r",
-									"\r",
-									"        postman.setNextRequest(pm.info.requestId);\r",
-									"    }\r",
-									"}\r",
-									"\r",
-									"function checkForCopcMessage() {\r",
-									"\r",
-									"    const copcInteractionId = \"COPC_IN000001UK01\";\r",
-									"    let hasCopc = false;\r",
-									"    \r",
-									"    const responseArray = pm.response.json();\r",
-									"\r",
-									"    responseArray.find(response => {\r",
-									"        if (response.headers[\"interaction-id\"] === copcInteractionId) {\r",
-									"            pm.collectionVariables.set(\"copc-messageId\", response.headers[\"message-id\"])\r",
-									"            hasCopc = true;\r",
-									"            return true;\r",
-									"        }\r",
-									"\r",
-									"    });\r",
-									"   \r",
-									"    return hasCopc;\r",
-									"}\r",
-									"\r",
-									"if (!checkForCopcMessage()) {\r",
-									"    retryRequest();\r",
-									"}\r",
-									"\r",
-									"\r",
-									"\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8085/retrieve/{{conversationId}}",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8085",
-							"path": [
-								"retrieve",
-								"{{conversationId}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "ACK COPC message Copy",
+					"name": "ACK COPC message",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -6122,6 +6037,40 @@
 								"localhost"
 							],
 							"port": "{{inbound-port}}"
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify conversation is not closed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code should be 204\", () => {\r",
+									"    pm.expect(pm.response.code).to.equal(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/gp2gp-adaptor-db/received-ack/{{conversationId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"gp2gp-adaptor-db",
+								"received-ack",
+								"{{conversationId}}"
+							]
 						}
 					},
 					"response": []
@@ -6335,6 +6284,12 @@
 									"    responseBody = pm.response.json();\r",
 									"    \r",
 									"    pm.expect(responseBody.errors).to.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Conversation should be closed\", () => {\r",
+									"    responseBody = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseBody.conversationClosed).not.to.be.null;\r",
 									"});"
 								],
 								"type": "text/javascript"
