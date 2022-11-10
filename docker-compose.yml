@@ -108,7 +108,7 @@ services:
   # GP2GP Adaptor specific
 
   gp2gp:
-    image: nhsdev/nia-gp2gp-adaptor:1.5.2
+    image: nhsdev/nia-gp2gp-adaptor:1.5.5-amd64
 #    image: local/gp2gp
     networks:
       - nia-common
