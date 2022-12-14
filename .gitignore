@@ -2,3 +2,5 @@
 /mhs-mock/.gradle/
 /mhs-mock/build/
 /*.iml
+/wiremock-extensions/.gradle/
+/wiremock-extensions/build/
