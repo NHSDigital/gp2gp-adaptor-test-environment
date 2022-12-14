@@ -110,7 +110,6 @@ services:
   gp2gp:
     image: nhsdev/nia-gp2gp-adaptor:1.5.5-arm64
 #    image: nhsdev/nia-gp2gp-adaptor:1.5.5-amd64
-#    image: local/gp2gp
     networks:
       - nia-common
     depends_on:
