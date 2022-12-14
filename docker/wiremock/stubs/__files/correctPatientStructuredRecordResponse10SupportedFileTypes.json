@@ -16448,7 +16448,7 @@
                     {
                         "attachment": {
                             "contentType": "application/pdf",
-                            "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Bundle/33df5475-5ff2-495b-91e8-608dbc3c4b41",
+                            "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Binary/33df5475-5ff2-495b-91e8-608dbc3c4b41",
                             "size": 13
                         }
                     }
@@ -16493,7 +16493,7 @@
                     {
                         "attachment": {
                             "contentType": "application/xml",
-                            "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Bundle/8653de60-1b35-42d3-a7d5-32d9dfe0e988",
+                            "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Binary/8653de60-1b35-42d3-a7d5-32d9dfe0e988",
                             "size": 13
                         }
                     }
@@ -16538,7 +16538,7 @@
                     {
                         "attachment": {
                             "contentType": "audio/mpeg",
-                            "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Bundle/f0a560fa-f1f8-4405-a74a-3d5756350da7",
+                            "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Binary/f0a560fa-f1f8-4405-a74a-3d5756350da7",
                             "size": 13
                         }
                     }
@@ -16583,7 +16583,7 @@
                     {
                         "attachment": {
                             "contentType": "image/jpeg",
-                            "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Bundle/801e2f34-448d-4ba0-ad59-5ddc08841355",
+                            "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Binary/801e2f34-448d-4ba0-ad59-5ddc08841355",
                             "size": 13
                         }
                     }
@@ -16628,7 +16628,7 @@
                     {
                         "attachment": {
                             "contentType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                            "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Bundle/af7b9556-e95f-4872-96d9-fa6d2db3ee81",
+                            "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Binary/af7b9556-e95f-4872-96d9-fa6d2db3ee81",
                             "size": 13
                         }
                     }
@@ -16673,7 +16673,7 @@
                     {
                         "attachment": {
                             "contentType": "application/x-rar-compressed",
-                            "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Bundle/7502857f-2216-4d3b-a115-d50a5d2a939c",
+                            "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Binary/7502857f-2216-4d3b-a115-d50a5d2a939c",
                             "size": 13
                         }
                     }
@@ -16718,7 +16718,7 @@
                     {
                         "attachment": {
                             "contentType": "text/csv",
-                            "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Bundle/191ab934-b64c-4cb2-a3b5-64df060e0e2c",
+                            "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Binary/191ab934-b64c-4cb2-a3b5-64df060e0e2c",
                             "size": 13
                         }
                     }
@@ -16763,7 +16763,7 @@
                     {
                         "attachment": {
                             "contentType": "image/x-pict",
-                            "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Bundle/b09a1ffd-5dec-4c47-806a-e9a25a0da9b1",
+                            "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Binary/b09a1ffd-5dec-4c47-806a-e9a25a0da9b1",
                             "size": 13
                         }
                     }
@@ -16808,7 +16808,7 @@
                     {
                         "attachment": {
                             "contentType": "application/dicom",
-                            "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Bundle/89265209-46a5-4ba5-9ac3-9e5b01a0d10f",
+                            "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Binary/89265209-46a5-4ba5-9ac3-9e5b01a0d10f",
                             "size": 13
                         }
                     }
@@ -16853,7 +16853,7 @@
                     {
                         "attachment": {
                             "contentType": "video/mp4",
-                            "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Bundle/533ddf45-6982-45f6-94cc-3a99e3ed1bfd",
+                            "url": "{{request.baseUrl}}/B82617/STU3/1/gpconnect/documents/fhir/Binary/533ddf45-6982-45f6-94cc-3a99e3ed1bfd",
                             "size": 13
                         }
                     }
