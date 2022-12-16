@@ -2,9 +2,9 @@
 
 set -x -e
 
-source ./vars.sh
+source ./vars-prod.sh
 
-docker-compose down
+docker-compose -f docker-compose-prod.yml down
 
 cd mock-spine-mhs-outbound
 
@@ -17,8 +17,6 @@ cd ..
 docker network inspect nia-common >/dev/null 2>&1 || \
     docker network create nia-common
 
-docker-compose build
+docker-compose -f docker-compose-prod.yml build
 
-docker-compose up
-
-docker-compose down
+docker-compose -f docker-compose-prod.yml up -d

@@ -18,7 +18,7 @@ services:
   # MHS specific
 
   inbound:
-    image: nhsdev/nia-mhs-inbound:1.2.2
+    image: ${MHS_INBOUND_VERSION}
     networks:
       - nia-common
     ports:
@@ -47,7 +47,7 @@ services:
       - SERVICE_PORTS=${MHS_INBOUND_SERVICE_PORTS}
 
   outbound:
-    image: nhsdev/nia-mhs-outbound:1.2.2
+    image: ${MHS_OUTBOUND_VERSION}
     networks:
       - nia-common
     ports:
@@ -75,29 +75,29 @@ services:
       - MHS_SDS_API_URL
       - MHS_SDS_API_KEY
 
-#  route:
-#    image: nhsdev/nia-mhs-route:1.2.2
-#    networks:
-#      - nia-common
-#    ports:
-#        - "${MHS_ROUTE_PORT}:80"
-#    environment:
-#      - MHS_LOG_LEVEL
-#      - MHS_SDS_URL
-#      - MHS_SDS_SEARCH_BASE
-#      - MHS_DISABLE_SDS_TLS
-#      - MHS_SDS_REDIS_CACHE_HOST
-#      - MHS_SDS_REDIS_DISABLE_TLS
+  route:
+    image: ${MHS_ROUTE_VERSION}
+    networks:
+      - nia-common
+    ports:
+        - "${MHS_ROUTE_PORT}:80"
+    environment:
+      - MHS_LOG_LEVEL
+      - MHS_SDS_URL
+      - MHS_SDS_SEARCH_BASE
+      - MHS_DISABLE_SDS_TLS
+      - MHS_SDS_REDIS_CACHE_HOST
+      - MHS_SDS_REDIS_DISABLE_TLS
 
   dynamodb:
-    image: nhsdev/nia-dynamodb-local:1.0.3
+    image: ${DYNAMODB_VERSION}
     networks:
       - nia-common
     ports:
       - "8000:8000"
 
   redis:
-    image: redis
+    image: ${REDIS_VERSION}
     networks:
       - nia-common
     ports:
@@ -108,9 +108,7 @@ services:
   # GP2GP Adaptor specific
 
   gp2gp:
-    image: nhsdev/nia-gp2gp-adaptor:1.5.5-arm64
-#    image: nhsdev/nia-gp2gp-adaptor:1.5.5-amd64
-#    image: local/gp2gp
+    image: ${GP2GP_VERSION}
     networks:
       - nia-common
     depends_on:
@@ -151,12 +149,12 @@ services:
   mongodb:
     networks:
       - nia-common
-    image: mongo
+    image: ${MONGODB_VERSION}
     ports:
       - "27017:27017"
 
   gpcc:
-    image: nhsdev/nia-gpc-consumer-adaptor:0.3.3
+    image: ${GPC_CONSUMER_VERSION}
     networks:
       - nia-common
     ports:
@@ -183,34 +181,10 @@ services:
     ports:
       - "8110:8080"
 
-  stub-gpc-sds:
-    networks:
-      - nia-common
-    build: ./docker/stub-gpc-sds-wiremock
-    ports:
-      - "8111:8080"
-    environment:
-      - STUB_GPC_SDS_STRUCTURED_URL
-      - STUB_GPC_SDS_DOCUMENTS_URL
-
 ################################
 
 # Mock spine and route service for MHS Adaptor
 
-  mock-spine-mhs:
-    networks:
-      - nia-common
-    depends_on:
-      - mongodb
-    build:
-      context: ./
-      dockerfile: docker/mock-spine-mhs-outbound/DockerFile
-    ports:
-      - "8085:8085"
-      - "8443:8443"
-    environment:
-      - GP2GP_MONGO_URI
-      - GP2GP_MONGO_DATABASE_NAME
 
 ################################
 
