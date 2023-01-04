@@ -47,7 +47,7 @@ services:
       - SERVICE_PORTS=${MHS_INBOUND_SERVICE_PORTS}
 
   outbound:
-    image: nhsdev/nia-mhs-outbound:1.2.2
+    image: local/mhs-outbound-sa:latest
     networks:
       - nia-common
     ports:
@@ -74,6 +74,7 @@ services:
       - MHS_OUTBOUND_ROUTING_LOOKUP_METHOD
       - MHS_SDS_API_URL
       - MHS_SDS_API_KEY
+      - SUPPORTED_FILE_TYPES
 
 #  route:
 #    image: nhsdev/nia-mhs-route:1.2.2
@@ -108,8 +109,8 @@ services:
   # GP2GP Adaptor specific
 
   gp2gp:
-    image: nhsdev/nia-gp2gp-adaptor:1.5.5-arm64
-#    image: nhsdev/nia-gp2gp-adaptor:1.5.5-amd64
+    image: nhsdev/nia-gp2gp-adaptor:1.5.7-arm64
+#    image: nhsdev/nia-gp2gp-adaptor:1.5.7-amd64
     networks:
       - nia-common
     depends_on:
