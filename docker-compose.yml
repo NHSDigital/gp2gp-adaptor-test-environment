@@ -47,7 +47,7 @@ services:
       - SERVICE_PORTS=${MHS_INBOUND_SERVICE_PORTS}
 
   outbound:
-    image: local/mhs-outbound-sa:latest
+    image: nhsdev/nia-mhs-outbound:1.2.2
     networks:
       - nia-common
     ports:
