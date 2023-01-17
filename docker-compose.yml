@@ -45,6 +45,7 @@ services:
       - MHS_INBOUND_USE_SSL=${MHS_INBOUND_USE_SSL}
       - TCP_PORTS=${MHS_INBOUND_PORT}
       - SERVICE_PORTS=${MHS_INBOUND_SERVICE_PORTS}
+      - SUPPORTED_FILE_TYPES
 
   outbound:
     image: nhsdev/nia-mhs-outbound:1.2.2
