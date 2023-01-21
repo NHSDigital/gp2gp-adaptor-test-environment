@@ -48,7 +48,7 @@ services:
       - SUPPORTED_FILE_TYPES
 
   outbound:
-    image: nhsdev/nia-mhs-inbound:1.2.5-arm64
+    image: nhsdev/nia-mhs-outbound:1.2.5-arm64
     networks:
       - nia-common
     ports:
