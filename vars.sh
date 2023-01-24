@@ -179,8 +179,6 @@ export GP2GP_MONGO_URI="mongodb://mongodb:27017"
 export GP2GP_MONGO_DATABASE_NAME="gp2gp"
 export GP2GP_MHS_OUTBOUND_URL="http://outbound:80"
 export GP2GP_GPC_GET_URL="http://gpcc:8090/@ODS_CODE@/STU3/1/gpconnect"
-export GP2GP_LARGE_ATTACHMENT_THRESHOLD="31216"
-export GP2GP_LARGE_EHR_EXTRACT_THRESHOLD="31216"
 
 
 # GP CONNECT CONSUMER ADAPTOR VARS (alter to connect the GP2GP Adaptor to a GP Connect Producer)
