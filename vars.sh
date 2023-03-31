@@ -158,7 +158,7 @@ export MHS_OUTBOUND_ROUTING_LOOKUP_METHOD="SPINE_ROUTE_LOOKUP"
 export MHS_INBOUND_PORT="443"
 export MHS_INBOUND_SERVICE_PORTS="`echo $MHS_INBOUND_PORT`,`echo $MHS_OUTBOUND_PORT`"
 export MHS_INBOUND_QUEUE_BROKERS="amqp://activemq:5672"
-export MHS_INBOUND_QUEUE_NAME="inbound"
+export MHS_INBOUND_QUEUE_NAME="gp2gpInboundQueue"
 export MHS_SECRET_INBOUND_QUEUE_USERNAME="guest"
 export MHS_SECRET_INBOUND_QUEUE_PASSWORD="guest"
 export MHS_INBOUND_QUEUE_MESSAGE_TTL_IN_SECONDS="1000"
@@ -179,6 +179,7 @@ export GP2GP_MONGO_URI="mongodb://mongodb:27017"
 export GP2GP_MONGO_DATABASE_NAME="gp2gp"
 export GP2GP_MHS_OUTBOUND_URL="http://outbound:80"
 export GP2GP_GPC_GET_URL="http://gpcc:8090/@ODS_CODE@/STU3/1/gpconnect"
+export GP2GP_MHS_INBOUND_QUEUE="gp2gpInboundQueue"
 
 
 # GP CONNECT CONSUMER ADAPTOR VARS (alter to connect the GP2GP Adaptor to a GP Connect Producer)
