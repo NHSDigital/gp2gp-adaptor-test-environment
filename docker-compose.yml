@@ -18,7 +18,7 @@ services:
   # MHS specific
 
   inbound:
-    image: nhsdev/nia-mhs-inbound:1.2.5-arm64
+    image: nhsdev/nia-mhs-inbound:1.2.5-amd64
     networks:
       - nia-common
     ports:
@@ -48,7 +48,7 @@ services:
       - SUPPORTED_FILE_TYPES
 
   outbound:
-    image: nhsdev/nia-mhs-outbound:1.2.5-arm64
+    image: nhsdev/nia-mhs-outbound:1.2.5-amd64
     networks:
       - nia-common
     ports:
@@ -110,8 +110,8 @@ services:
   # GP2GP Adaptor specific
 
   gp2gp:
-    image: nhsdev/nia-gp2gp-adaptor:1.5.7-arm64
-#    image: nhsdev/nia-gp2gp-adaptor:1.5.7-amd64
+#    image: nhsdev/nia-gp2gp-adaptor:1.5.7-arm64
+    image: nhsdev/nia-gp2gp-adaptor:1.5.9-amd64
     networks:
       - nia-common
     depends_on:
@@ -148,6 +148,7 @@ services:
       - GP2GP_GPC_GET_TEST_URL
       - GP2GP_LARGE_ATTACHMENT_THRESHOLD
       - GP2GP_LARGE_EHR_EXTRACT_THRESHOLD
+      - GP2GP_MHS_INBOUND_QUEUE
 
   mongodb:
     networks:
