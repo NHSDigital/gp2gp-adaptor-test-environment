@@ -11,14 +11,9 @@ and read the response messages that would be sent through Spine.
 There is a bash script provided to run the environment. To use it, run 
 the following command from the project root directory. 
 
-Linux
+Linux/mac
 ```shell
 ./run-environment.sh
-```
-
-Mac
-```shell
-sh run-environment.sh
 ```
 
 ### docker images
