@@ -18,7 +18,7 @@ services:
   # MHS specific
 
   inbound:
-    image: nhsdev/nia-mhs-inbound:1.2.5-amd64
+    image: nhsdev/nia-mhs-inbound:1.2.7
     networks:
       - nia-common
     ports:
@@ -48,7 +48,7 @@ services:
       - SUPPORTED_FILE_TYPES
 
   outbound:
-    image: nhsdev/nia-mhs-outbound:1.2.5-amd64
+    image: nhsdev/nia-mhs-outbound:1.2.7
     networks:
       - nia-common
     ports:
@@ -78,7 +78,7 @@ services:
       - SUPPORTED_FILE_TYPES
 
 #  route:
-#    image: nhsdev/nia-mhs-route:1.2.2
+#    image: nhsdev/nia-mhs-route:1.2.7
 #    networks:
 #      - nia-common
 #    ports:
@@ -110,8 +110,7 @@ services:
   # GP2GP Adaptor specific
 
   gp2gp:
-#    image: nhsdev/nia-gp2gp-adaptor:1.5.7-arm64
-    image: nhsdev/nia-gp2gp-adaptor:1.5.9-amd64
+    image: nhsdev/nia-gp2gp-adaptor:1.5.10
     networks:
       - nia-common
     depends_on:
