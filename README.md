@@ -1,9 +1,9 @@
 # GP2GP Adaptor Test Environment
 
 The test environment is designed to perform local e2e testing of the 
-[GP2GP Adaptor](https://github.com/nhsconnect/integration-adaptor-gp2gp). 
+[GP2GP Adaptor](https://github.com/NHSDigital/integration-adaptor-gp2gp). 
 It makes it possible to send GP2GP messages directly to the 
-[MHS Adaptor](https://github.com/nhsconnect/integration-adaptor-mhs.git) 
+[MHS Adaptor](https://github.com/NHSDigital/integration-adaptor-mhs) 
 and read the response messages that would be sent through Spine.
 
 ## Getting Started
@@ -11,17 +11,9 @@ and read the response messages that would be sent through Spine.
 There is a bash script provided to run the environment. To use it, run 
 the following command from the project root directory. 
 
-Linux/mac
 ```shell
 ./run-environment.sh
 ```
-
-### docker images
-
-The current release of the GP2GP Adaptor has separate docker images optimised for ARM and x86 architecture. 
-By default, the test environment uses the ARM image. This can be changed by commenting / uncommenting *line 111* 
-and *line 112* in the [docker compose file](docker-compose.yml).
-
 
 ## Running tests 
 
