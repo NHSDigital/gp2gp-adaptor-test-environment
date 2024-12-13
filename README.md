@@ -1,5 +1,11 @@
 # GP2GP Adaptor Test Environment
 
+> [!IMPORTANT]  
+> This repository has been archived as we no longer have a need to perform
+> E2E testing locally.
+> Any E2E testing is more productive when executed against the NHS INT PTL.
+> The software within this is outdated and potentially incorrect.
+
 The test environment is designed to perform local e2e testing of the 
 [GP2GP Adaptor](https://github.com/nhsconnect/integration-adaptor-gp2gp). 
 It makes it possible to send GP2GP messages directly to the 
